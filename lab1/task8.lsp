@@ -8,12 +8,12 @@
 (printDotsRec 2)
 (printDotsRec 5)
 
-(defun calcCount (x) (let ((cnt 0)) (loop for i in x do (incf cnt) finally (return-from calccount cnt))))
+(defun calcCount (x y) (let ((cnt 0)) (loop for i in y do (if (eql i x) (incf cnt)) finally (return cnt))))
 
-(print (calcCount '(1 2 3 4 5 6 7)))
-(print (calcCount '(a b c d)))
+(print (calcCount 'a '(1 2 3 4 5 6 7)))
+(print (calcCount 'a '(a b c a d a)))
 
-(defun calcCountRec (x) (if x (+ (calcCountRec (cdr x)) 1) 0))
+(defun calcCountRec (x y) (if y (if (eql (car y) x) (+ (calcCountRec x (cdr y)) 1) (calcCountRec x (cdr y))) 0))
 
-(print (calcCountRec '(1 2 3 4 5 6 7)))
-(print (calcCountRec '(a b c d)))
+(print (calcCountRec 'a '(1 2 3 4 5 6 7)))
+(print (calcCountRec 'a '(a b c a d a)))
