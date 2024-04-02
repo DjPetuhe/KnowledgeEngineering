@@ -38,7 +38,6 @@
     (assert (Doctor (name "Dr. Johnson") (specialty "Pediatrician") (room "Room 2")))
 )
 
-;; Правило для запису пацієнта на прийом
 (defrule ScheduleAppointment
     (initial-fact)
     =>
@@ -69,5 +68,5 @@
         (assert (Appointment (day ?day) (time ?time) (doctor "Dr. Smith") (patient ?name)))
         (printout t crlf "Appointment scheduled for patient " ?name " on " ?day " at " ?time ". The cost is $50." crlf)
     )
-    (assert (printed ?day ?time)) ;; Позначаємо, що прийом на цей день та час вже було надруковано
+    (assert (printed ?day ?time))
 )
